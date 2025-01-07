@@ -39,6 +39,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: List directory contents
+        run: ls -la
+
       - name: Copy test results to public directory
         run: cp -r playwright-report public/
 
