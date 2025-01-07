@@ -29,9 +29,7 @@ jobs:
       - name: Run Playwright tests
         id: test_results
         run: |
-          npx playwright test > result.log || true
-          echo "TEST_RESULT=$(grep -E '✓|✖' result.log)" >> $GITHUB_ENV
-          echo "TEST_LOG=$(cat result.log)" >> $GITHUB_ENV
+          npx playwright test
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
