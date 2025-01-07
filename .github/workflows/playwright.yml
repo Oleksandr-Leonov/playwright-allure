@@ -27,7 +27,6 @@ jobs:
             text: "🚀 *Starting Playwright tests...*"
 
       - name: Run Playwright tests
-        id: test_results
         continue-on-error: true
         run: |
           npx playwright test
@@ -42,7 +41,6 @@ jobs:
         run: cp -r playwright-report public/
 
       - name: Calculate Test Results
-        id: test_results
         run: |
           PASSED=$(jq '.suites[].tests[] | select(.status == "passed") | .status' playwright-report/report.json | wc -l)
           FAILED=$(jq '.suites[].tests[] | select(.status == "failed") | .status' playwright-report/report.json | wc -l)
