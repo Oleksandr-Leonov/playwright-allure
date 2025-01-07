@@ -50,22 +50,16 @@ jobs:
           echo "FAILURES=$FAILURES" >> $GITHUB_ENV
           echo "SKIPPED=$SKIPPED" >> $GITHUB_ENV
 
-      - name: Notify Slack - After Tests
-        uses: slackapi/slack-github-action@v2.0.0
-        with:
-          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-          webhook-type: incoming-webhook
-          payload: |
-            - name: Notify Slack - After Tests
-  uses: slackapi/slack-github-action@v2.0.0
-  with:
-    webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-    webhook-type: incoming-webhook
-    payload: |
-       text: "*Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: $(( ${{ env.TESTS }} - ${{ env.FAILURES }} - ${{ env.SKIPPED }} ))\n- ❌ Failed: ${{ env.FAILURES }}\n- 📜 Total Tests: ${{ env.TESTS }}\n- 📍 Results can be found at: https://${{ github.actor }}.github.io/${{ github.event.repository.name }}/"
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+
+        - name: Notify Slack - After Tests
+          uses: slackapi/slack-github-action@v2.0.0
+          with:
+            webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+            webhook-type: incoming-webhook
+            payload: |
+              text: "*Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: $(( ${{ env.TESTS }} - ${{ env.FAILURES }} - ${{ env.SKIPPED }} ))\n- ❌ Failed: ${{ env.FAILURES }}\n- 📜 Total Tests: ${{ env.TESTS }}\n- 📍 Results can be found at: https://${{ github.actor }}.github.io/${{ github.event.repository.name }}/"
