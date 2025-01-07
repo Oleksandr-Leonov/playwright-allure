@@ -43,9 +43,9 @@ jobs:
       - name: Parse XML Test Results
         id: test_results
         run: |
-          TESTS=$(xmllint --xpath 'string(/testsuites/@tests)' playwright-report/report.xml)
-          FAILURES=$(xmllint --xpath 'string(/testsuites/@failures)' playwright-report/report.xml)
-          SKIPPED=$(xmllint --xpath 'string(/testsuites/@skipped)' playwright-report/report.xml)
+          TESTS=$(grep -oP '(?<=tests=")[^"]*' playwright-report/report.xml)
+          FAILURES=$(grep -oP '(?<=failures=")[^"]*' playwright-report/report.xml)
+          SKIPPED=$(grep -oP '(?<=skipped=")[^"]*' playwright-report/report.xml)
           echo "TESTS=$TESTS" >> $GITHUB_ENV
           echo "FAILURES=$FAILURES" >> $GITHUB_ENV
           echo "SKIPPED=$SKIPPED" >> $GITHUB_ENV
