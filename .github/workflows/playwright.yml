@@ -46,9 +46,11 @@ jobs:
           TESTS=$(grep -oP '(?<=tests=")[^"]*' playwright-report/report.xml | head -n 1)
           FAILURES=$(grep -oP '(?<=failures=")[^"]*' playwright-report/report.xml | head -n 1)
           SKIPPED=$(grep -oP '(?<=skipped=")[^"]*' playwright-report/report.xml | head -n 1)
+          PASSED=$((TESTS - FAILURES - SKIPPED))
           echo "TESTS=$TESTS" >> $GITHUB_ENV
           echo "FAILURES=$FAILURES" >> $GITHUB_ENV
           echo "SKIPPED=$SKIPPED" >> $GITHUB_ENV
+          echo "PASSED=$PASSED" >> $GITHUB_ENV
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -62,4 +64,4 @@ jobs:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           webhook-type: incoming-webhook
           payload: |
-            text: "*Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: $(( ${{ env.TESTS }} - ${{ env.FAILURES }} - ${{ env.SKIPPED }} ))\n- ❌ Failed: ${{ env.FAILURES }}\n- 📜 Total Tests: ${{ env.TESTS }}\n- 📍 Results can be found at: https://${{ github.actor }}.github.io/${{ github.event.repository.name }}/"
+            text: "*Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: ${{ env.PASSED }}\n- ❌ Failed: ${{ env.FAILURES }}\n- 📜 Total Tests: ${{ env.TESTS }}\n- 📍 Results can be found at: https://${{ github.actor }}.github.io/${{ github.event.repository.name }}/"
