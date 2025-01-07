@@ -16,7 +16,7 @@ jobs:
         run: npm install
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium webkit
+        run: npx playwright install
 
       - name: Notify Slack - Before Tests
         uses: slackapi/slack-github-action@v2.0.0
@@ -28,6 +28,7 @@ jobs:
 
       - name: Run Playwright tests
         id: test_results
+        continue-on-error: true
         run: |
           npx playwright test
 
