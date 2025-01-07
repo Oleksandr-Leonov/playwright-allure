@@ -15,9 +15,21 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Notify Slack - Before Tests
+        uses: slack-github-action/slack-github-action@v2.0.0
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          text: '🚀 *Starting Playwright tests...*'
+
       - name: Run Playwright tests
-        run: npx playwright test
-        continue-on-error: true
+        id: test_results
+        run: |
+          npx playwright test > result.log || true
+          echo "TEST_RESULT=$(cat result.log)" >> $GITHUB_ENV
+          echo "TEST_LOG=$(cat result.log)" >> $GITHUB_ENV
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -27,6 +39,18 @@ jobs:
 
       - name: Copy test results to public directory
         run: cp -r playwright-report public/
+
+      - name: Notify Slack - After Tests
+        uses: slack-github-action/slack-github-action@v2.0.0
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          text: |
+            🎉 *Playwright tests completed!* 
+            📊 *Results:* 
+            - ✅ Passed: $(echo "${{ env.TEST_LOG }}" | grep -c "✓")
+            - ❌ Failed: $(echo "${{ env.TEST_LOG }}" | grep -c "✖")
+            - 📜 Total Tests: $(echo "${{ env.TEST_LOG }}" | grep -c "✓") + $(echo "${{ env.TEST_LOG }}" | grep -c "✖")
+            - 📍 Results can be found at: https://<your-username>.github.io/<your-repo-name>/  # Replace with your GitHub Pages URL
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
