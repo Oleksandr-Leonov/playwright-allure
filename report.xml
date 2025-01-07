@@ -1,0 +1,224 @@
+<testsuites id="" name="" tests="6" failures="2" skipped="0" errors="0" time="9.883662000000001">
+<testsuite name="example.spec.js" timestamp="2025-01-07T17:23:14.261Z" hostname="chromium" tests="2" failures="0" skipped="0" time="1.129" errors="0">
+<testcase name="has title" classname="example.spec.js" time="0.702">
+</testcase>
+<testcase name="get started link" classname="example.spec.js" time="0.427">
+</testcase>
+</testsuite>
+<testsuite name="example.spec.js" timestamp="2025-01-07T17:23:14.261Z" hostname="firefox" tests="2" failures="0" skipped="0" time="1.949" errors="0">
+<testcase name="has title" classname="example.spec.js" time="1.201">
+</testcase>
+<testcase name="get started link" classname="example.spec.js" time="0.748">
+</testcase>
+</testsuite>
+<testsuite name="example.spec.js" timestamp="2025-01-07T17:23:14.261Z" hostname="webkit" tests="2" failures="2" skipped="0" time="0.039" errors="0">
+<testcase name="has title" classname="example.spec.js" time="0.02">
+<failure message="example.spec.js:4:1 has title" type="FAILURE">
+<![CDATA[  [webkit] › example.spec.js:4:1 › has title ───────────────────────────────────────────────────────
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo npx playwright install-deps                 ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libwoff1\                   ║
+    ║         libvpx9\                                     ║
+    ║         libevent-2.1-7t64\                           ║
+    ║         libopus0\                                    ║
+    ║         libgstreamer-plugins-base1.0-0\              ║
+    ║         libgstreamer-gl1.0-0\                        ║
+    ║         libgstreamer-plugins-bad1.0-0\               ║
+    ║         libflite1\                                   ║
+    ║         libavif16\                                   ║
+    ║         libharfbuzz-icu0\                            ║
+    ║         libsecret-1-0\                               ║
+    ║         libhyphen0\                                  ║
+    ║         libmanette-0.2-0\                            ║
+    ║         libgles2\                                    ║
+    ║         gstreamer1.0-libav                           ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo npx playwright install-deps                 ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libwoff1\                   ║
+    ║         libvpx9\                                     ║
+    ║         libevent-2.1-7t64\                           ║
+    ║         libopus0\                                    ║
+    ║         libgstreamer-plugins-base1.0-0\              ║
+    ║         libgstreamer-gl1.0-0\                        ║
+    ║         libgstreamer-plugins-bad1.0-0\               ║
+    ║         libflite1\                                   ║
+    ║         libavif16\                                   ║
+    ║         libharfbuzz-icu0\                            ║
+    ║         libsecret-1-0\                               ║
+    ║         libhyphen0\                                  ║
+    ║         libmanette-0.2-0\                            ║
+    ║         libgles2\                                    ║
+    ║         gstreamer1.0-libav                           ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/example-has-title-webkit-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/example-has-title-webkit-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo npx playwright install-deps                 ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libwoff1\                   ║
+    ║         libvpx9\                                     ║
+    ║         libevent-2.1-7t64\                           ║
+    ║         libopus0\                                    ║
+    ║         libgstreamer-plugins-base1.0-0\              ║
+    ║         libgstreamer-gl1.0-0\                        ║
+    ║         libgstreamer-plugins-bad1.0-0\               ║
+    ║         libflite1\                                   ║
+    ║         libavif16\                                   ║
+    ║         libharfbuzz-icu0\                            ║
+    ║         libsecret-1-0\                               ║
+    ║         libhyphen0\                                  ║
+    ║         libmanette-0.2-0\                            ║
+    ║         libgles2\                                    ║
+    ║         gstreamer1.0-libav                           ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/example-has-title-webkit-retry1/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="get started link" classname="example.spec.js" time="0.019">
+<failure message="example.spec.js:11:1 get started link" type="FAILURE">
+<![CDATA[  [webkit] › example.spec.js:11:1 › get started link ───────────────────────────────────────────────
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo npx playwright install-deps                 ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libwoff1\                   ║
+    ║         libvpx9\                                     ║
+    ║         libevent-2.1-7t64\                           ║
+    ║         libopus0\                                    ║
+    ║         libgstreamer-plugins-base1.0-0\              ║
+    ║         libgstreamer-gl1.0-0\                        ║
+    ║         libgstreamer-plugins-bad1.0-0\               ║
+    ║         libflite1\                                   ║
+    ║         libavif16\                                   ║
+    ║         libharfbuzz-icu0\                            ║
+    ║         libsecret-1-0\                               ║
+    ║         libhyphen0\                                  ║
+    ║         libmanette-0.2-0\                            ║
+    ║         libgles2\                                    ║
+    ║         gstreamer1.0-libav                           ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo npx playwright install-deps                 ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libwoff1\                   ║
+    ║         libvpx9\                                     ║
+    ║         libevent-2.1-7t64\                           ║
+    ║         libopus0\                                    ║
+    ║         libgstreamer-plugins-base1.0-0\              ║
+    ║         libgstreamer-gl1.0-0\                        ║
+    ║         libgstreamer-plugins-bad1.0-0\               ║
+    ║         libflite1\                                   ║
+    ║         libavif16\                                   ║
+    ║         libharfbuzz-icu0\                            ║
+    ║         libsecret-1-0\                               ║
+    ║         libhyphen0\                                  ║
+    ║         libmanette-0.2-0\                            ║
+    ║         libgles2\                                    ║
+    ║         gstreamer1.0-libav                           ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/example-get-started-link-webkit-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/example-get-started-link-webkit-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: 
+    ╔══════════════════════════════════════════════════════╗
+    ║ Host system is missing dependencies to run browsers. ║
+    ║ Please install them with the following command:      ║
+    ║                                                      ║
+    ║     sudo npx playwright install-deps                 ║
+    ║                                                      ║
+    ║ Alternatively, use apt:                              ║
+    ║     sudo apt-get install libwoff1\                   ║
+    ║         libvpx9\                                     ║
+    ║         libevent-2.1-7t64\                           ║
+    ║         libopus0\                                    ║
+    ║         libgstreamer-plugins-base1.0-0\              ║
+    ║         libgstreamer-gl1.0-0\                        ║
+    ║         libgstreamer-plugins-bad1.0-0\               ║
+    ║         libflite1\                                   ║
+    ║         libavif16\                                   ║
+    ║         libharfbuzz-icu0\                            ║
+    ║         libsecret-1-0\                               ║
+    ║         libhyphen0\                                  ║
+    ║         libmanette-0.2-0\                            ║
+    ║         libgles2\                                    ║
+    ║         gstreamer1.0-libav                           ║
+    ║                                                      ║
+    ║ <3 Playwright Team                                   ║
+    ╚══════════════════════════════════════════════════════╝
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/example-get-started-link-webkit-retry1/trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
