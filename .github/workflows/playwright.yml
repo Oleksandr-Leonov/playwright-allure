@@ -19,7 +19,7 @@ jobs:
         run: npx playwright install --with-deps chromium webkit
 
       - name: Notify Slack - Before Tests
-        uses: slack-github-action/slack-github-action@v2.0.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
           text: '🚀 *Starting Playwright tests...*'
@@ -41,7 +41,7 @@ jobs:
         run: cp -r playwright-report public/
 
       - name: Notify Slack - After Tests
-        uses: slack-github-action/slack-github-action@v2.0.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
           text: |
