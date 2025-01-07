@@ -23,7 +23,9 @@ jobs:
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
-            text: "🚀 *Starting Playwright tests...*"
+            {
+              "text": "🚀 *Starting Playwright tests...*"
+            }
 
       - name: Run Playwright tests
         id: test_results
@@ -46,14 +48,10 @@ jobs:
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
-          text: 
-            "🎉 *Playwright tests completed!* 
-            📊 *Results:* 
-            - ✅ Passed: $(echo "${{ env.TEST_LOG }}" | grep -c "✓")
-            - ❌ Failed: $(echo "${{ env.TEST_LOG }}" | grep -c "✖")
-            - 📜 Total Tests: $(echo "${{ env.TEST_LOG }}" | grep -c "✓") + $(echo "${{ env.TEST_LOG }}" | grep -c "✖")
-            - 📍 Results can be found at: https://<your-username>.github.io/<your-repo-name>/  # Replace with your GitHub Pages URL
-            "
+            {
+              "text": "🎉 *Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: $(echo '${{ env.TEST_LOG }}' | grep -c '✓')\n- ❌ Failed: $(echo '${{ env.TEST_LOG }}' | grep -c '✖')\n- 📜 Total Tests: $(echo '${{ env.TEST_LOG }}' | grep -c '✓') + $(echo '${{ env.TEST_LOG }}' | grep -c '✖')\n- 📍 Results can be found at: https://github.com/${{ github.actor }}/${{ github.repository }}/"
+            }
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
