@@ -41,13 +41,23 @@ jobs:
       - name: Copy test results to public directory
         run: cp -r playwright-report public/
 
+      - name: Calculate Test Results
+        id: test_results
+        run: |
+          PASSED=$(jq '.suites[].tests[] | select(.status == "passed") | .status' playwright-report/report.json | wc -l)
+          FAILED=$(jq '.suites[].tests[] | select(.status == "failed") | .status' playwright-report/report.json | wc -l)
+          TOTAL=$(jq '.suites[].tests[] | .status' playwright-report/report.json | wc -l)
+          echo "PASSED=$PASSED" >> $GITHUB_ENV
+          echo "FAILED=$FAILED" >> $GITHUB_ENV
+          echo "TOTAL=$TOTAL" >> $GITHUB_ENV
+
       - name: Notify Slack - After Tests
         uses: slackapi/slack-github-action@v2.0.0
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           webhook-type: incoming-webhook
           payload: |
-            text: "*Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: $(jq '.suites[].tests[] | select(.status == "passed") | .status' playwright-report/report.json | wc -l)\n- ❌ Failed: $(jq '.suites[].tests[] | select(.status == "failed") | .status' playwright-report/report.json | wc -l)\n- 📜 Total Tests: $(jq '.suites[].tests[] | .status' playwright-report/report.json | wc -l)\n- 📍 Results can be found at: https://github.com/${{ github.actor }}/${{ github.repository }}"
+            text: "*Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: ${{ env.PASSED }}\n- ❌ Failed: ${{ env.FAILED }}\n- 📜 Total Tests: ${{ env.TOTAL }}\n- 📍 Results can be found at: https://github.com/${{ github.actor }}/${{ github.repository }}"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
