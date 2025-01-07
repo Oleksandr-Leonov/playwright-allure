@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  install:
+  install and run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -14,13 +14,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-  test:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
       - name: Run Playwright tests
         run: npx playwright test
@@ -31,16 +24,6 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
-
-  publish:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: List directory contents
-        run: ls -la
 
       - name: Copy test results to public directory
         run: cp -r playwright-report public/
