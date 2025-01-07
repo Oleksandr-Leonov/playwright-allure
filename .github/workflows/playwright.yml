@@ -30,7 +30,7 @@ jobs:
         id: test_results
         run: |
           npx playwright test > result.log || true
-          echo "TEST_RESULT=$(cat result.log)" >> $GITHUB_ENV
+          echo "TEST_RESULT=$(grep -E '✓|✖' result.log)" >> $GITHUB_ENV
           echo "TEST_LOG=$(cat result.log)" >> $GITHUB_ENV
 
       - name: Upload test results
