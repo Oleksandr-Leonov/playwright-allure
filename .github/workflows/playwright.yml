@@ -47,7 +47,7 @@ jobs:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           webhook-type: incoming-webhook
           payload: |
-            text: "*Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: $(echo '${{ env.TEST_LOG }}' | grep -c '✓')\n- ❌ Failed: $(echo '${{ env.TEST_LOG }}' | grep -c '✖')\n- 📜 Total Tests: $(echo '${{ env.TEST_LOG }}' | grep -c '✓') + $(echo '${{ env.TEST_LOG }}' | grep -c '✖')\n- 📍 Results can be found at: https://github.com/${{ github.actor }}/${{ github.repository }}
+            text: "*Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: $(jq '.suites[].tests[] | select(.status == "passed") | .status' playwright-report/report.json | wc -l)\n- ❌ Failed: $(jq '.suites[].tests[] | select(.status == "failed") | .status' playwright-report/report.json | wc -l)\n- 📜 Total Tests: $(jq '.suites[].tests[] | .status' playwright-report/report.json | wc -l)\n- 📍 Results can be found at: https://github.com/${{ github.actor }}/${{ github.repository }}"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
