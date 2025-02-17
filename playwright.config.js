@@ -7,7 +7,20 @@ module.exports = defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [["html"], ["junit", { outputFile: "playwright-report/report.xml" }]],
+  reporter: [
+    ["html"],
+    ["junit", { outputFile: "playwright-report/report.xml" }],
+    [
+      "allure-playwright",
+      {
+        environmentInfo: {
+          OS: process.platform,
+          CI: process.env.CI ? "Yes" : "No",
+          BUILD_ID: process.env.BUILD_ID,
+        },
+      },
+    ],
+  ],
   use: {
     trace: "on-first-retry",
   },

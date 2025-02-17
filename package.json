@@ -2,12 +2,20 @@
   "name": "playwright-githubactions",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "allure:generate": "npx allure generate",
+    "allure:open": "npx allure open"
+  },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.5"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.32.2",
+    "allure-playwright": "^3.1.0"
   }
 }
