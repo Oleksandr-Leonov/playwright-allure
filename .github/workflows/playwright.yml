@@ -29,14 +29,6 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install
 
-      - name: Notify Slack - Before Tests
-        uses: slackapi/slack-github-action@v2.0.0
-        with:
-          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-          webhook-type: incoming-webhook
-          payload: |
-            text: "🚀 *Starting Playwright tests...*"
-
       - name: Run Playwright tests
         continue-on-error: true
         run: |
@@ -78,11 +70,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
-
-      - name: Notify Slack - After Tests
-        uses: slackapi/slack-github-action@v2.0.0
-        with:
-          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-          webhook-type: incoming-webhook
-          payload: |
-            text: "*Playwright tests completed!*\n📊 *Results:*\n- ✅ Passed: ${{ env.PASSED }}\n- ❌ Failed: ${{ env.FAILURES }}\n- 📜 Total Tests: ${{ env.TESTS }}\n- 📍 Results can be found at: https://${{ github.actor }}.github.io/${{ github.event.repository.name }}/"
