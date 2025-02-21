@@ -70,3 +70,16 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
+
+      - name: Send Teams notification
+        run: |
+          GH_PAGES_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+
+          curl -X POST "${{ secrets.TEAMS_WEBHOOK_URI }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "Total": "'"${{ env.TOTAL }}"'",
+              "Passed": "'"${{ env.PASSED }}"'",
+              "Failed": "'"${{ env.FAILED }}"'",
+              "ReportURL": "'"$GH_PAGES_URL"'"
+            }'
