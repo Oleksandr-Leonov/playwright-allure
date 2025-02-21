@@ -78,8 +78,8 @@ jobs:
           curl -X POST "${{ secrets.TEAMS_WEBHOOK_URI }}" \
             -H "Content-Type: application/json" \
             -d '{
-              "Total": "'"${{ env.TOTAL }}"'",
+              "Total": "'"${{ env.TESTS }}"'",
               "Passed": "'"${{ env.PASSED }}"'",
-              "Failed": "'"${{ env.FAILED }}"'",
+              "Failed": "'"${{ env.FAILURES }}"'",
               "ReportURL": "'"$GH_PAGES_URL"'"
             }'
